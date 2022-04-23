@@ -1,0 +1,72 @@
+/*
+ * @NOTE: Prepend a `~` to css file paths that are in your node_modules
+ *        See https://github.com/webpack-contrib/sass-loader#imports
+ */
+body {
+  position: relative;
+  color: black;
+  height: 100vh;
+  background: lightgrey;
+  font-family: monospace;
+  overflow-y: hidden;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+}
+
+.App {
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.titleDiv {
+  justify-content: center;
+  justify-items: center;
+  text-align: center;
+}
+
+.contentDiv {
+  justify-content: left;
+  justify-items: left;
+  text-align: left;
+}
+
+.row {
+  --bs-gutter-x: 0;
+}
+
+.verySmallFont {
+  font-weight: bold;
+  font-size: x-small;
+}
+
+.smallFont {
+  font-weight: bold;
+  font-size: small;
+}
+
+.mediumFont {
+  font-weight: bold;
+  font-size: large;
+}
+
+.largeFont {
+  font-weight: bold;
+  font-size: large;
+}
+
+.boldLargeFont {
+  font-weight: bold;
+  font-size: large;
+}
+
+.boldXLargeFont {
+  font-weight: bold;
+  font-size: x-large;
+}
+
+.boldXXLargeFont {
+  font-weight: bold;
+  font-size: 2rem;
+}

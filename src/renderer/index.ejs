@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Electron React Weather App</title>
+
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  </head>
+  <body>
+    <script>
+      // Startup env variable setting.
+      currentInternalConditionsURI = '';
+      window.electron.ipcRenderer.once('get-current-internal-conditions-uri', (arg) => {
+        // eslint-disable-next-line no-console
+        currentInternalConditionsURI = arg;
+        console.log(currentInternalConditionsURI);
+      });
+      window.electron.ipcRenderer.getCurrentInternalConditionsURI();
+
+      historicInternalConditionsURI = '';
+      window.electron.ipcRenderer.once('get-historic-internal-conditions-uri', (arg) => {
+        // eslint-disable-next-line no-console
+        historicInternalConditionsURI = arg;
+        console.log(historicInternalConditionsURI);
+      });
+      window.electron.ipcRenderer.getHistoricInternalConditionsURI();
+
+      weatherURI = '';
+      window.electron.ipcRenderer.once('get-weather-uri', (arg) => {
+        // eslint-disable-next-line no-console
+        weatherURI = arg;
+        console.log(weatherURI);
+      });
+      window.electron.ipcRenderer.getWeatherURI();
+
+      measurementSystem = '';
+      window.electron.ipcRenderer.once('get-measurement-system', (arg) => {
+        // eslint-disable-next-line no-console
+        measurementSystem = arg;
+        console.log(measurementSystem);
+      });
+      window.electron.ipcRenderer.getMeasurementSystem();
+
+      // Add event listener for esc key exit.
+      window.addEventListener('keyup', (e) => {
+        if (e.key == 'Escape')
+          window.close();
+      });
+    </script>
+    <div id="root"></div>
+  </body>
+</html>

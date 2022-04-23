@@ -1,0 +1,27 @@
+.hourlyTimeFont {
+  font-weight: bolder;
+  font-size: 2rem;
+
+  display: flex;
+  flex-direction: row;
+}
+
+.amString {
+  color: darkorange;
+  font-weight: bolder;
+  font-size: medium;
+}
+
+.pmString {
+  color: purple;
+  font-weight: bolder;
+  font-size: medium;
+}
+
+.weatherIconLarge {
+  float: right;
+}
+
+.conditionText {
+  float: right;
+}

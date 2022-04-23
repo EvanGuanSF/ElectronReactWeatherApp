@@ -1,0 +1,8 @@
+{
+  "OW_API_KEY": "your openweather api key",
+  "LAT": "your latitude",
+  "LON": "your longitude",
+  "MEASUREMENT_SYSTEM": "metric imperial kelvin",
+  "CURRENT_INTERNAL_CONDITIONS_URI": "your.data.uri (Fetches updates every 3 seconds in app)",
+  "HISTORIC_INTERNAL_CONDITIONS_URI": "your.data.uri (Fetches updates every 10 minutes in app)"
+}
