@@ -15,13 +15,13 @@ This app uses Electron and React web technologies to fetch and display data from
 1) Clone the project
 
 ```bash
-  git clone https://link-to-project
+  git clone https://github.com/EvanGuanSF/ElectronReactWeatherApp
 ```
 
 2) Go to the project directory
 
 ```bash
-  cd my-project
+  cd ElectronReactWeatherApp
 ```
 
 3) Install dependencies
@@ -54,7 +54,7 @@ Note that the data URIs consumed require json objects of format e.g.:
 5) Start the app
 
 ```bash
-  npm run start
+  npm start
 ```
 
 6) Package the project for the local system
