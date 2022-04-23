@@ -1,9 +1,9 @@
-<img src="https://evanguan.com/img/ERWA.png"  width="120" height="120">  
 
 # Electron+React Weather App
 
 The goal of this application is to display current and future weather and environmental conditions in a kiosk-like presentation.
 This app uses Electron and React web technologies to fetch and display data from the free openweather.org "Current Weather Data" api and self-made data apis.
+<img src="https://evanguan.com/img/ERWA.png"  width="120" height="120">  
 
 ## Screenshot
 
