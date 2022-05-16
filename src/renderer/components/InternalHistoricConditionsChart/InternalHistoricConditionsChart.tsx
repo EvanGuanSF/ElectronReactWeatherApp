@@ -119,6 +119,7 @@ export default class InternalHistoricConditionsChart extends Component {
       this.state.piTempHumData === null ||
       this.state.piTempHumData === undefined
     ) {
+      console.log('No InternalHistoricConditionsChart data.');
       return <div />;
     }
 

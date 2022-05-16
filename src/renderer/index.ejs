@@ -14,7 +14,7 @@
       window.electron.ipcRenderer.once('get-current-internal-conditions-uri', (arg) => {
         // eslint-disable-next-line no-console
         currentInternalConditionsURI = arg;
-        console.log(currentInternalConditionsURI);
+        // console.log(currentInternalConditionsURI);
       });
       window.electron.ipcRenderer.getCurrentInternalConditionsURI();
 
@@ -22,7 +22,7 @@
       window.electron.ipcRenderer.once('get-historic-internal-conditions-uri', (arg) => {
         // eslint-disable-next-line no-console
         historicInternalConditionsURI = arg;
-        console.log(historicInternalConditionsURI);
+        // console.log(historicInternalConditionsURI);
       });
       window.electron.ipcRenderer.getHistoricInternalConditionsURI();
 
@@ -30,7 +30,7 @@
       window.electron.ipcRenderer.once('get-weather-uri', (arg) => {
         // eslint-disable-next-line no-console
         weatherURI = arg;
-        console.log(weatherURI);
+        // console.log(weatherURI);
       });
       window.electron.ipcRenderer.getWeatherURI();
 
@@ -38,7 +38,7 @@
       window.electron.ipcRenderer.once('get-measurement-system', (arg) => {
         // eslint-disable-next-line no-console
         measurementSystem = arg;
-        console.log(measurementSystem);
+        // console.log(measurementSystem);
       });
       window.electron.ipcRenderer.getMeasurementSystem();
 

@@ -21,6 +21,10 @@ const dataPath =
     ? __dirname
     : path.join(process.resourcesPath, '/src/main');
 
+
+console.log('Binary path:', __dirname);
+console.log('Data path:', dataPath);
+
 let env = null;
 
 try {
@@ -36,8 +40,6 @@ try {
 if (!env) {
   alert('Bad env configuration!');
 }
-
-console.log(__dirname);
 
 const weatherURI =
   `https://api.openweathermap.org/data/2.5/onecall?` +
@@ -61,6 +63,12 @@ ipcMain.on('get-measurement-system', async (event, arg) => {
   );
 });
 
+ipcMain.on('get-weather-uri', async (event, arg) => {
+  const msgTemplate = (info: string) => `${info}`;
+  console.log(msgTemplate(arg));
+  event.reply('get-weather-uri', msgTemplate(weatherURI));
+});
+
 ipcMain.on('get-current-internal-conditions-uri', async (event, arg) => {
   const msgTemplate = (info: string) => `${info}`;
   console.log(msgTemplate(arg));
@@ -73,33 +81,25 @@ ipcMain.on('get-current-internal-conditions-uri', async (event, arg) => {
 ipcMain.on('get-historic-internal-conditions-uri', async (event, arg) => {
   const msgTemplate = (info: string) => `${info}`;
   console.log(msgTemplate(arg));
-  console.log(__dirname);
   event.reply(
     'get-historic-internal-conditions-uri',
     msgTemplate(historicInternalConditionsURI)
   );
 });
 
-ipcMain.on('get-weather-uri', async (event, arg) => {
-  const msgTemplate = (info: string) => `${info}`;
-  console.log(msgTemplate(arg));
-  event.reply('get-weather-uri', msgTemplate(weatherURI));
-});
-
 const createWindow = async () => {
   mainWindow = new BrowserWindow({
     show: false,
-    // width: 1080,
-    // height: 1200,
+    width: 1080,
+    height: 1920,
     frame: false, // Hide window frame
     resizable: false,
     fullscreen: true,
-    skipTaskbar: true, // Render over taskbar
     kiosk: true, // Do not render title or menu
     webPreferences: {
       nodeIntegration: false,
       preload: path.join(__dirname, 'preload.js'),
-    },
+      }
   });
 
   mainWindow.loadURL(resolveHtmlPath('index.html'));
@@ -111,6 +111,7 @@ const createWindow = async () => {
     if (!mainWindow) {
       throw new Error('"mainWindow" is not defined');
     }
+    console.log('Now showing main window...');
     mainWindow.maximize();
     mainWindow.show();
   });

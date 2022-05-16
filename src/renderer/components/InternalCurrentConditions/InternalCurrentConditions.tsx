@@ -79,9 +79,9 @@ export default class InternalCurrentConditions extends Component {
             currentHumidity: averageHumidity,
           });
 
-          console.log(
-            this.state.currentTemp.toFixed(2), this.state.currentHumidity.toFixed(2)
-          );
+          // console.log(
+          //   this.state.currentTemp.toFixed(2), this.state.currentHumidity.toFixed(2)
+          // );
 
           // console.log(
           //   `${new Date().toLocaleString()}: Done getting new sensor data.`
@@ -96,6 +96,7 @@ export default class InternalCurrentConditions extends Component {
 
   getNewSensorData = async () => {
     try {
+      clearInterval(this.loadNewInternalHistoricConditions);
       this.loadNewInternalHistoricConditions = setInterval(async () => {
         // console.log(
         //   `${new Date().toLocaleString()}: Getting new sensor data...`
@@ -109,13 +110,14 @@ export default class InternalCurrentConditions extends Component {
 
   render() {
     if (!this.state) {
+      console.log('No InternalCurrentConditions data.');
       return <div />;
     }
 
     return (
       <div className="col border m-0 p-2">
         <div className='currentConditionsText'>{this.state.currentTemp.toFixed(1)}{this.state.tempUnit}</div>
-        <div className='currentConditionsText'>{this.state.currentHumidity.toFixed(1)}%RH</div>
+        <div className='currentConditionsText'>{this.state.currentHumidity.toFixed(1)}% RH</div>
       </div>
     );
   }

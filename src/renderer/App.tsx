@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { ExternalCurrentConditions } from './components/ExternalCurrentConditions/ExternalCurrentConditions';
 import InternalCurrentConditions from './components/InternalCurrentConditions/InternalCurrentConditions';
+import TimeDisplay from './components/TimeDisplay/TimeDisplay';
 import { ExternalHourlyForecastConditions } from './components/ExternalHourlyForecastConditions/ExternalHourlyForecastConditions';
 import { ExternalDailyForecastConditions } from './components/ExternalDailyForecastConditions/ExternalDailyForecastConditions';
 import InternalHistoricConditionsChart from './components/InternalHistoricConditionsChart/InternalHistoricConditionsChart';
@@ -12,7 +13,6 @@ export default class App extends Component {
     console.log('Building App component.');
 
     this.state = {
-      currentTime: new Date(Date.now()).toLocaleTimeString(),
       dataUpdateIntevalMinutes: 5,
     };
   }
@@ -24,46 +24,45 @@ export default class App extends Component {
     // console.log(
     //   `${new Date().toLocaleString()}: Getting initial weather data...`
     // );
-    this.getNewCurrentTime();
     this.getWeatherData();
     this.getNewWeatherData();
   }
 
   componentWillUnmount() {
     // Clear the wait interval.
-    clearInterval(this.getNewCurrentTimeInterval);
     clearInterval(this.getNewForecastConditionsInterval);
   }
 
-  getNewCurrentTime = async () => {
-    try {
-      this.getNewCurrentTimeInterval = setInterval(async () => {
-        this.setState({
-          currentTime: new Date(Date.now()).toLocaleTimeString(),
-        });
-      }, 1000);
-    } catch (err: any) {
-      console.log(err);
-    }
-  };
-
   getWeatherData = async () => {
+    // Race condition fix for uri not received from main.ts via ipc
+    if (weatherURI === '') {
+      console.log('No weather uri, waiting...');
+      clearTimeout(this.tryGetWeatherData);
+      this.tryGetWeatherData = setTimeout(() => {
+        console.log('Trying to get data again...');
+        this.getWeatherData();
+      }, 500);
+      return;
+    }
+
     try {
       await fetch(weatherURI)
         .then((res) => {
           if (!res.ok) {
             throw new Error('Network response was not OK');
           }
+          // console.log(res);
           return res.json();
         })
         .then((resData) => {
-          this.setState({
-            weatherData: resData,
-          });
           // console.log(
           //   `${new Date().toLocaleString()}: Done getting new weather data.`
           // );
-          // console.log(resData.current.dt);
+          // console.log(resData);
+          console.log('Weather data acquired.');
+          this.setState({
+            weatherData: resData,
+          });
           return resData;
         });
     } catch (err: any) {
@@ -91,7 +90,8 @@ export default class App extends Component {
       this.state.weatherData === null ||
       this.state.weatherData === undefined
     ) {
-      return <div />;
+      console.log('No weather data.');
+      return <div>Loading...</div>;
     }
 
     return (
@@ -102,14 +102,7 @@ export default class App extends Component {
           <div className="col-2" />
 
           <div className="col-8">
-            <div className="boldXXLargeFont text-center">
-              {new Date(Date.now()).toLocaleDateString('en-US', {
-                dateStyle: 'full',
-              })}
-            </div>
-            <div className="boldXXLargeFont text-center">
-              {this.state.currentTime}
-            </div>
+            <TimeDisplay />
           </div>
 
           <div className="col-2" />

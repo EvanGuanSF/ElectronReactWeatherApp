@@ -6,6 +6,7 @@ export const ExternalHourlyForecastConditions = (props) => {
   console.log('Building ExternalHourlyForecastConditions component.');
 
   if (!forecastData) {
+    console.log('No ExternalHourlyForecastConditions data.');
     return <div />;
   }
 
@@ -35,51 +36,55 @@ export const ExternalHourlyForecastConditions = (props) => {
       return <div />;
   }
 
-  return forecastData.map((forecastInfo, index) => (
-    <div
-      className="col border m-0 p-2"
-      key={index}
-      style={{
-        backgroundImage: "url(" + "https://openweathermap.org/img/wn/" + forecastInfo.weather[0].icon + "@4x.png" + ")",
-        backgroundPosition: '115% -25%',
-        backgroundSize: '60%',
-        backgroundRepeat: 'no-repeat',
-      }}
-    >
-      <div>
-        <div className="hourlyTimeFont">
-          {new Date(forecastInfo.dt * 1000)
-            .toLocaleTimeString('en-US', {
-              hour: 'numeric',
-              minute: '2-digit',
-            })
-            .slice(0, -6)}
-          {new Date(forecastInfo.dt * 1000)
-            .toLocaleTimeString('en-US', {
-              hour: 'numeric',
-              minute: '2-digit',
-            })
-            .slice(-2) === 'AM' ? (
-            <div className="amString">AM</div>
-          ) : (
-            <div className="pmString">PM</div>
-          )}
+  return !forecastData ? (
+    <div />
+  ) : (
+    forecastData.map((forecastInfo, index) => (
+      <div
+        className="col border m-0 p-2"
+        key={index}
+        style={{
+          backgroundImage: "url(" + "https://openweathermap.org/img/wn/" + forecastInfo.weather[0].icon + "@4x.png" + ")",
+          backgroundPosition: '115% -25%',
+          backgroundSize: '60%',
+          backgroundRepeat: 'no-repeat',
+        }}
+      >
+        <div>
+          <div className="hourlyTimeFont">
+            {new Date(forecastInfo.dt * 1000)
+              .toLocaleTimeString('en-US', {
+                hour: 'numeric',
+                minute: '2-digit',
+              })
+              .slice(0, -6)}
+            {new Date(forecastInfo.dt * 1000)
+              .toLocaleTimeString('en-US', {
+                hour: 'numeric',
+                minute: '2-digit',
+              })
+              .slice(-2) === 'AM' ? (
+              <div className="amString">AM</div>
+            ) : (
+              <div className="pmString">PM</div>
+            )}
+          </div>
         </div>
+        <div className="smallFont">
+          {forecastInfo.weather[0].description.toString()}
+        </div>
+        <div className="boldXLargeFont">
+          🌡️ {forecastInfo.temp.toFixed(1)}
+          {tempStringPart}
+        </div>
+        <div className="mediumFont">{forecastInfo.humidity.toFixed(0)}% RH</div>
+        <div className="mediumFont">
+          💨 {Math.round(forecastInfo.wind_speed)}-{Math.round(forecastInfo.wind_gust)} {speedStringPart}
+        </div>
+        <div className="mediumFont">💧 {(forecastInfo.pop * 100).toFixed(0)}%</div>
       </div>
-      <div className="smallFont">
-        {forecastInfo.weather[0].description.toString()}
-      </div>
-      <div className="boldXLargeFont">
-        🌡️ {forecastInfo.temp.toFixed(1)}
-        {tempStringPart}
-      </div>
-      <div className="mediumFont">{forecastInfo.humidity.toFixed(0)}% RH</div>
-      <div className="mediumFont">
-        💨 {Math.round(forecastInfo.wind_speed)}-{Math.round(forecastInfo.wind_gust)} {speedStringPart}
-      </div>
-      <div className="mediumFont">💧 {(forecastInfo.pop * 100).toFixed(0)}%</div>
-    </div>
-  ));
+    ))
+  );
 };
 
 // PropTypes

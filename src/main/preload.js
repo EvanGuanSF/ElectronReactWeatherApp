@@ -12,22 +12,17 @@ contextBridge.exposeInMainWorld('electron', {
     },
     getWeatherURI() {
       ipcRenderer.send('get-weather-uri',
-        'URI req from preload/renderer.'
+        'Get Weather URI req from preload/renderer.'
       );
     },
     getCurrentInternalConditionsURI() {
       ipcRenderer.send('get-current-internal-conditions-uri',
-        'URI req from preload/renderer.'
+        'Get Current Internal Conditions URI req from preload/renderer.'
       );
     },
     getHistoricInternalConditionsURI() {
       ipcRenderer.send('get-historic-internal-conditions-uri',
-        'URI req from preload/renderer.'
-      );
-    },
-    getWeatherURI() {
-      ipcRenderer.send('get-weather-uri',
-        'URI req from preload/renderer.'
+        'Get Historic Internal Conditions URI req from preload/renderer.'
       );
     },
     on(channel, func) {

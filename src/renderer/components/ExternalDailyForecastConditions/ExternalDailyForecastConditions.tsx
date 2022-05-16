@@ -6,6 +6,7 @@ export const ExternalDailyForecastConditions = (props) => {
   console.log('Building ExternalDailyForecastConditions component.');
 
   if (!forecastData) {
+    console.log('No ExternalDailyForecastConditions data.');
     return <div />;
   }
 
@@ -35,37 +36,41 @@ export const ExternalDailyForecastConditions = (props) => {
       return <div />;
   }
 
-  return forecastData.map((forecastInfo, index) => (
-    <div
-      className="col border m-0 p-2"
-      key={index}
-      style={{
-        backgroundImage: "url(" + "https://openweathermap.org/img/wn/" + forecastInfo.weather[0].icon + "@4x.png" + ")",
-        backgroundPosition: '125% -50%',
-        backgroundSize: '60%',
-        backgroundRepeat: 'no-repeat',
-      }}
-    >
-      <div className="boldXLargeFont">
-        {new Date(forecastInfo.dt * 1000).toLocaleDateString('en-US', {
-          month: 'short',
-          day: 'numeric',
-        })}
+  return !forecastData ? (
+    <div />
+  ) : (
+    forecastData.map((forecastInfo, index) => (
+      <div
+        className="col border m-0 p-2"
+        key={index}
+        style={{
+          backgroundImage: "url(" + "https://openweathermap.org/img/wn/" + forecastInfo.weather[0].icon + "@4x.png" + ")",
+          backgroundPosition: '125% -50%',
+          backgroundSize: '60%',
+          backgroundRepeat: 'no-repeat',
+        }}
+      >
+        <div className="boldXLargeFont">
+          {new Date(forecastInfo.dt * 1000).toLocaleDateString('en-US', {
+            month: 'short',
+            day: 'numeric',
+          })}
+        </div>
+        <div className="smallFont">
+          {forecastInfo.weather[0].description.toString()}
+        </div>
+        <div className="boldLargeFont">
+          🌡️ {forecastInfo.temp.min.toFixed(0)}-{forecastInfo.temp.max.toFixed(0)}
+          {tempStringPart}
+        </div>
+        <div className="mediumFont">{forecastInfo.humidity.toFixed(0)}% RH</div>
+        <div className="mediumFont">
+          💨 {Math.round(forecastInfo.wind_speed)}-{Math.round(forecastInfo.wind_gust)} {speedStringPart}
+        </div>
+        <div className="mediumFont">💧 {(forecastInfo.pop * 100).toFixed(0)}%</div>
       </div>
-      <div className="smallFont">
-        {forecastInfo.weather[0].description.toString()}
-      </div>
-      <div className="boldLargeFont">
-        🌡️ {forecastInfo.temp.min.toFixed(0)}-{forecastInfo.temp.max.toFixed(0)}
-        {tempStringPart}
-      </div>
-      <div className="mediumFont">{forecastInfo.humidity.toFixed(0)}% RH</div>
-      <div className="mediumFont">
-        💨 {Math.round(forecastInfo.wind_speed)}-{Math.round(forecastInfo.wind_gust)} {speedStringPart}
-      </div>
-      <div className="mediumFont">💧 {(forecastInfo.pop * 100).toFixed(0)}%</div>
-    </div>
-  ));
+    ))
+  );
 };
 
 // PropTypes

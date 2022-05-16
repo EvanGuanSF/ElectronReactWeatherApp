@@ -4,10 +4,6 @@ export const ExternalCurrentConditions = (props) => {
   const { forecastData } = props;
   console.log('Building ExternalCurrentConditions component.');
 
-  if (!forecastData) {
-    return <div />;
-  }
-
   let tempStringPart = '';
   let speedStringPart = '';
   switch (measurementSystem) {
@@ -27,7 +23,13 @@ export const ExternalCurrentConditions = (props) => {
       return <div />;
   }
 
-  return (
+  if (!forecastData) {
+    console.log('No ExternalCurrentConditions data.');
+  }
+
+  return !forecastData ? (
+    <div />
+  ) : (
     <div
       className="col border m-0 p-2"
       style={{
