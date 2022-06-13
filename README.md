@@ -4,15 +4,14 @@
 <img align="left" src="https://evanguan.com/img/ERWA.png" width="120" height="120">
 
 # Electron+React Weather App
-
-The goal of this application is to display current and future weather and environmental conditions in a kiosk-like presentation.
-This app uses Electron and React web technologies to fetch and display data from the free openweather.org "Current Weather Data" api and self-made data apis.
+<br><br>
+The goal of this application is to display current and future weather and environmental conditions in a kiosk-like presentation.<br>
+This app uses Electron and React web technologies to fetch and display data from the free openweather.org "Current Weather Data" api and self-made data apis.<br>
 A Fritizing wiring diagram is made available which in conjunction with some extra supporting programs allows for a single-power-cable appliance-like deployment.
 
 ## Images
 
-<img src="https://evanguan.com/img/ElectronWeatherApp.png" height="300">
-<img src="https://evanguan.com/img/ERWA-Diagram.png" height="300">
+<img src="https://evanguan.com/img/ElectronWeatherApp.png" height="300"><img src="https://evanguan.com/img/ERWA-Diagram.png" height="300">
 
 ## Running the App
 
@@ -66,7 +65,7 @@ A Fritizing wiring diagram is made available which in conjunction with some extr
   npm start
 ```
 
-6) Package the project for the local system
+6) Package the project for the local system<br>
 	a) Build the program for the local system architecture.
 	```bash
 	  npm run package
@@ -80,10 +79,10 @@ A Fritizing wiring diagram is made available which in conjunction with some extr
 	c) [Optional] To add HC-SR04 sonar range detection to turn on the screen as seen in the above diagram, see my other repository: https://github.com/EvanGuanSF/HC-SR04-Sonar-Screen-Controller
 	d) [Optional] To get and log your own data using a BME680 sensor, see my other repository: https://github.com/EvanGuanSF/Pi-Sensor-Data
 
-7) Other considerations
-a) A simple way to hide the taskbar on a Raspberry Pi running Raspberry Pi OS is to right click task bar -> Panel Settings -> Advanced -> Under "Automatic Hiding"  check "Minimize panel when not in use" and set "Size when minimized" to 0 pixels.
-This allows you to go full screen kiosk mode without removing taskbar functionality altogether.
-b) Screen blanking (turning off render output after inactivity) is on by default on RPi OS. Turn it off by going to the Applications Menu -> Preferences -> Raspberry Pi Configuration -> Display -> toggle Screen Blanking off.
+7) Other considerations<br>
+  a) A simple way to hide the taskbar on a Raspberry Pi running Raspberry Pi OS is to right click task bar -> Panel Settings -> Advanced -> Under "Automatic Hiding"  check "Minimize panel when not in use" and set "Size when minimized" to 0 pixels.
+This allows you to go full screen kiosk mode without removing taskbar functionality altogether.<br><br>
+  b) Screen blanking (turning off render output after inactivity) is on by default on RPi OS. Turn it off by going to the Applications Menu -> Preferences -> Raspberry Pi Configuration -> Display -> toggle Screen Blanking off.<br>
 
 ## Acknowledgements
 
