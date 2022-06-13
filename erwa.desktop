@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=Electron React Weather App
+Exec=/usr/local/sbin/electron_react_weather_app/ElectronReactWeatherApp
+Terminal=false
+Type=Application

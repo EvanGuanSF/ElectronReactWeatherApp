@@ -33,6 +33,7 @@
   "build": {
     "productName": "ElectronReactWeatherApp",
     "appId": "org.erb.ElectronReactWeatherApp",
+    "artifactName": "ElectronReactWeatherApp",
     "asar": true,
     "asarUnpack": "**\\*.{node,dll}",
     "files": [
