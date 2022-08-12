@@ -77,6 +77,7 @@ A Fritizing wiring diagram is made available which in conjunction with some extr
 	  sudo ./install_erwa.sh
 	```
 	c) [Optional] To add HC-SR04 sonar range detection to turn on the screen as seen in the above diagram, see my other repository: https://github.com/EvanGuanSF/HC-SR04-Sonar-Screen-Controller
+  
 	d) [Optional] To get and log your own data using a BME680 sensor, see my other repository: https://github.com/EvanGuanSF/Pi-Sensor-Data
 
 7) Other considerations<br>
